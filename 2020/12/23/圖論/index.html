@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ryanovoovo.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="圖論">
+<meta property="og:type" content="article">
+<meta property="og:title" content="圖論">
+<meta property="og:url" content="https://ryanovoovo.github.io/2020/12/23/%E5%9C%96%E8%AB%96/index.html">
+<meta property="og:site_name" content="綸的部落格">
+<meta property="og:description" content="圖論">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-12-23T15:12:36.000Z">
+<meta property="article:modified_time" content="2020-12-23T15:26:11.613Z">
+<meta property="article:author" content="綸">
+<meta property="article:tag" content="圖論">
+<meta property="article:tag" content="拓樸排序 Topological order">
+<meta property="article:tag" content="最短路徑">
+<meta property="article:tag" content="最小生成樹 MST">
+<meta property="article:tag" content="dfs tree">
+<meta property="article:tag" content="ap">
+<meta property="article:tag" content="bridge">
+<meta property="article:tag" content="scc">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ryanovoovo.github.io/2020/12/23/%E5%9C%96%E8%AB%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>圖論 | 綸的部落格</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177212343-3"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-177212343-3');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">綸的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">d(`･∀･)b</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://ryanovoovo.github.io/2020/12/23/%E5%9C%96%E8%AB%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/myphoto.jpeg">
+      <meta itemprop="name" content="綸">
+      <meta itemprop="description" content="喜歡程式、耍廢、星星">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="綸的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          圖論
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-12-23 23:12:36 / Modified: 23:26:11" itemprop="dateCreated datePublished" datetime="2020-12-23T23:12:36+08:00">2020-12-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A8%8B%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">程式</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="圖論">圖論</h1>
+<a id="more"></a>
+<h2 id="拓樸排序-topological-order">拓樸排序 Topological order</h2>
+<div>
+<div class="graphviz">
+digraph topological1{ nodesep=0.5 rankdir = LR; a -&gt; b[color = red]; b -&gt; e[color = orange] a -&gt; d[color = red]; d -&gt; e[color = yellow]; b -&gt; c[color = orange]; c -&gt; e[color = green]; e -&gt; f[color = green]; c -&gt; f[color = blue]; }
+</div>
+</div>
+<h3 id="方法1.-計算-in-degre">方法1. 計算 in-degre</h3>
+<ol type="1">
+<li>將每一點的入度數算出</li>
+<li>入度數為0的點push進queue裡面</li>
+<li>將queue裡點的點拿出並將邊刪除</li>
+<li>刪除邊後的點入度數若為0則push進去queue</li>
+<li>queue pop的順序為一組topological order</li>
+<li>若有結束後有入度數不為0的代表有環</li>
+</ol>
+<h3 id="方法2.-dfs">方法2. dfs</h3>
+<ul>
+<li>dfs未完成前又回到原dfs的點則圖有環</li>
+<li>dfs的過程為ㄧ組topological order</li>
+</ul>
+<hr />
+<h2 id="單源最短路徑">單源最短路徑</h2>
+<div>
+<div class="graphviz">
+graph shortest_path{ nodesep=1 rankdir = LR; a -- b [label = "1"]; a -- c [label = "2", color = green]; b -- c [label = "4"]; b -- d [label = "7"]; c -- d [label = "4"]; d -- e [label = "1"]; c -- e [label = "3", color = green]; }
+</div>
+</div>
+<h3 id="方法1.-bellman-ford">方法1. Bellman-Ford</h3>
+<h4 id="適用情形">適用情形：</h4>
+<ul>
+<li>有負邊</li>
+<li>檢測負環</li>
+</ul>
+<h4 id="init"><strong>init:</strong></h4>
+<p><span class="math inline">\(\qquad\)</span><span class="math inline">\(edges = {(u_1, v_1), (u_2, v_2), (u_3, v_3), ... (u_m, v_m)}\\\)</span> <span class="math inline">\(\qquad\)</span><span class="math inline">\(d[n]={\infty}, d[start]=0\\\)</span></p>
+<h4 id="solve"><strong>solve:</strong></h4>
+<p><span class="math inline">\(\qquad\)</span> <span class="math inline">\(for\:vertex=1\sim n:\\\)</span> <span class="math inline">\(\qquad\)</span><span class="math inline">\(\qquad\)</span><span class="math inline">\(for(u,v)\;in\;edges\\\)</span> <span class="math inline">\(\qquad\)</span><span class="math inline">\(\qquad\)</span><span class="math inline">\(\qquad\)</span><span class="math inline">\(d[vertex]=min(d[vertex],\:d[vertex]+cost(u,v))&quot;鬆弛邊&quot;\\\)</span></p>
+<ul>
+<li><span class="math inline">\(複雜度O(nm)\)</span></li>
+</ul>
+<h3 id="方法2.-dijkstra">方法2. Dijkstra</h3>
+<h4 id="適用情形-1">適用情形：</h4>
+<ul>
+<li>無負邊</li>
+<li>時間限制較緊</li>
+</ul>
+<h4 id="init-1"><strong>init:</strong></h4>
+<p><span class="math inline">\(\qquad\)</span><span class="math inline">\(d[n]=\infty,d[start]=0\)</span></p>
+<h4 id="solve-1"><strong>solve:</strong></h4>
+<ol type="1">
+<li>將start點push進priority queue</li>
+<li>將top點依序拿出，連接的點若可更新權重，則更新為d[start]+cost，並push進priority queue</li>
+<li>priority queue內為空則結束</li>
+</ol>
+<ul>
+<li><span class="math inline">\(複雜度O(mlogm)\)</span></li>
+</ul>
+<hr />
+<h2 id="多源最短路徑">多源最短路徑</h2>
+<h3 id="floyd-warshall">Floyd-Warshall</h3>
+<h4 id="solve-2"><strong>solve:</strong></h4>
+<p><span class="math inline">\(\qquad for\:k=1\sim n: \\\)</span> <span class="math inline">\(\qquad\qquad for\ i=1\sim n: \\\)</span> <span class="math inline">\(\qquad\qquad\qquad for\ j=1\sim n: \\\)</span> <span class="math inline">\(\qquad\qquad\qquad\qquad dp[i][j]=min(dp[i][j],\ d[i][k]+dp[k][j])\)</span></p>
+<ul>
+<li><span class="math inline">\(複雜度O(n^3)\)</span></li>
+</ul>
+<hr />
+<h2 id="並查集-disjoint-set">並查集 disjoint-set</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(parrent[x] == x)&#123;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> parrent[x] = Find(parrent[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    parrent[Find(x)] = Find(y);</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="路徑壓縮">路徑壓縮</h3>
+<ul>
+<li><span class="math inline">\(parrent[Find(x)] = Find(y)\)</span></li>
+<li>複雜度:<span class="math inline">\(O(log^*n)\)</span></li>
+</ul>
+<h3 id="啟發式合併-union-by-rank">啟發式合併 union by rank</h3>
+<ul>
+<li>rank: size of tree</li>
+</ul>
+<hr />
+<h2 id="最小生成樹-mst">最小生成樹 MST</h2>
+<div>
+<div class="graphviz">
+graph MST{ nodesep=1 rankdir = LR; a -- c [label = "2", color = green]; a -- b [label = "1", color = green]; b -- c [label = "4"]; c -- d [label = "4", color = green]; b -- d [label = "7"]; c -- e [label = "8"]; d -- e [label = "3", color = green]; e -- f [label = "6"]; d -- f [label = "3", color = green]; }
+</div>
+</div>
+<h3 id="方法1.-kruskal">方法1. kruskal</h3>
+<ol type="1">
+<li>將邊的cost由小到大排序</li>
+<li>將邊上的點依序Union，若已為同一群則忽略</li>
+<li><span class="math inline">\(ans=\sum沒被忽略的邊\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(複雜度O(mlogm)\)</span></li>
+</ul>
+<h3 id="方法2.-prim">方法2. prim</h3>
+<h4 id="init-2"><strong>init:</strong></h4>
+<p><span class="math inline">\(\qquad\)</span><span class="math inline">\(d[n]=\infty,d[start]=0\)</span></p>
+<ol type="1">
+<li>隨機挑選start點加入 priority queue</li>
+<li>將top點依序拿出，連接的點若可更新權重，則更新為cost，並push進priority queue</li>
+<li>priority queue內空則完成</li>
+<li><span class="math inline">\(ans = \sum_{i=1}^{n}d[n]\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(複雜度O(mlogm)\)</span></li>
+</ul>
+<hr />
+<h2 id="dfs-tree">dfs tree</h2>
+<div>
+<div class="graphviz">
+digraph dfs_tree{ nodesep=0.5 a[color = red] c[color = red] b[color = red] i[color = red] d[color = red] j[color = red] a -&gt; c a -&gt; b[color = orange] b -&gt; e[color = orange] b -&gt; j j -&gt; k j -&gt; l[color = orange] c -&gt; d[color = orange] c -&gt; i d -&gt; f[color = orange] i -&gt; g i -&gt; h[color = orange] i -&gt; a[color = blue] g -&gt; a[color = blue] k -&gt; b[color = blue] }
+</div>
+</div>
+<p><span class="math inline">\(t(u):進入u的時間\\\)</span> <span class="math inline">\(low(u):u最多經過一條backedge，可以走到的最小t值\)</span></p>
+<h3 id="bridge">bridge</h3>
+<div>
+<div class="graphviz">
+digraph bridge{ v u -&gt; v[label = "bridge", color=orange] }
+</div>
+</div>
+<p><span class="math inline">\(如果\ low(v)=t(v),\ 則u\rightarrow v為bridge\)</span></p>
+<h3 id="articulation-point">Articulation Point</h3>
+<h4 id="case1-點u不是root">Case1 <span class="math inline">\(點u不是root\)</span></h4>
+<div>
+<div class="graphviz">
+graph case1{ o[label=""] u[color=red] o -- u u -- v }
+</div>
+</div>
+<p><span class="math inline">\(如果low(v)\ge t(v),\ 則點u為AP\)</span></p>
+<h4 id="case2-點u是root">Case2 <span class="math inline">\(點u是root\)</span></h4>
+<div>
+<div class="graphviz">
+graph case2{ u[color=red] u -- v1 u -- v2 }
+</div>
+</div>
+<p><span class="math inline">\(如果low(v_1)\ge t(v),\ 且low(v_2)\ge t(v),\ 則u為AP\)</span></p>
+<hr />
+<h2 id="強聯通單元-scc">強聯通單元 SCC</h2>
+<div>
+<div class="graphviz">
+digraph scc{ nodesep=0.5 rankdir = LR; b -&gt; d b -&gt; e d -&gt; e a -&gt; g b -&gt; g subgraph cluster0{ label="scc1"; color=green; shape=circle; a -&gt; b[color=orange]; b -&gt; c[color=orange]; c -&gt; a[color=orange]; } subgraph cluster1{ color=green label="scc2" d } subgraph cluster3{ color=green label="scc3" e -&gt; f[color=orange] f -&gt; g[color=orange] g -&gt; e[color=orange] } }
+</div>
+</div>
+<h3 id="性質">性質</h3>
+<ul>
+<li>若將每一組scc視作一節點，則此圖必為DAG</li>
+<li><span class="math inline">\(如果sccA\rightarrow sccB\)</span> <span class="math inline">\(則max\{t(a)|a\in A\}&gt;max\{t(b)|a\in B\}\)</span></li>
+</ul>
+<hr />
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9C%96%E8%AB%96/" rel="tag"># 圖論</a>
+              <a href="/tags/%E6%8B%93%E6%A8%B8%E6%8E%92%E5%BA%8F-Topological-order/" rel="tag"># 拓樸排序 Topological order</a>
+              <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%91/" rel="tag"># 最短路徑</a>
+              <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A8%B9-MST/" rel="tag"># 最小生成樹 MST</a>
+              <a href="/tags/dfs-tree/" rel="tag"># dfs tree</a>
+              <a href="/tags/ap/" rel="tag"># ap</a>
+              <a href="/tags/bridge/" rel="tag"># bridge</a>
+              <a href="/tags/scc/" rel="tag"># scc</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/23/%E6%95%B8%E8%AB%96/" rel="prev" title="數論">
+      <i class="fa fa-chevron-left"></i> 數論
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/24/%E8%A8%88%E7%AE%97%E5%B9%BE%E4%BD%95/" rel="next" title="計算幾何">
+      計算幾何 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%96%E8%AB%96"><span class="nav-number">1.</span> <span class="nav-text">圖論</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E6%A8%B8%E6%8E%92%E5%BA%8F-topological-order"><span class="nav-number">1.1.</span> <span class="nav-text">拓樸排序 Topological order</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%951.-%E8%A8%88%E7%AE%97-in-degre"><span class="nav-number">1.1.1.</span> <span class="nav-text">方法1. 計算 in-degre</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%952.-dfs"><span class="nav-number">1.1.2.</span> <span class="nav-text">方法2. dfs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%96%AE%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%91"><span class="nav-number">1.2.</span> <span class="nav-text">單源最短路徑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%951.-bellman-ford"><span class="nav-number">1.2.1.</span> <span class="nav-text">方法1. Bellman-Ford</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%A9%E7%94%A8%E6%83%85%E5%BD%A2"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">適用情形：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#init"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">init:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#solve"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">solve:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%952.-dijkstra"><span class="nav-number">1.2.2.</span> <span class="nav-text">方法2. Dijkstra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%A9%E7%94%A8%E6%83%85%E5%BD%A2-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">適用情形：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#init-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">init:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#solve-1"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">solve:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%91"><span class="nav-number">1.3.</span> <span class="nav-text">多源最短路徑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#floyd-warshall"><span class="nav-number">1.3.1.</span> <span class="nav-text">Floyd-Warshall</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#solve-2"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">solve:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A6%E6%9F%A5%E9%9B%86-disjoint-set"><span class="nav-number">1.4.</span> <span class="nav-text">並查集 disjoint-set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%91%E5%A3%93%E7%B8%AE"><span class="nav-number">1.4.1.</span> <span class="nav-text">路徑壓縮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%9F%E7%99%BC%E5%BC%8F%E5%90%88%E4%BD%B5-union-by-rank"><span class="nav-number">1.4.2.</span> <span class="nav-text">啟發式合併 union by rank</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A8%B9-mst"><span class="nav-number">1.5.</span> <span class="nav-text">最小生成樹 MST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%951.-kruskal"><span class="nav-number">1.5.1.</span> <span class="nav-text">方法1. kruskal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%952.-prim"><span class="nav-number">1.5.2.</span> <span class="nav-text">方法2. prim</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#init-2"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">init:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dfs-tree"><span class="nav-number">1.6.</span> <span class="nav-text">dfs tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bridge"><span class="nav-number">1.6.1.</span> <span class="nav-text">bridge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#articulation-point"><span class="nav-number">1.6.2.</span> <span class="nav-text">Articulation Point</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#case1-%E9%BB%9Eu%E4%B8%8D%E6%98%AFroot"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">Case1 \(點u不是root\)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#case2-%E9%BB%9Eu%E6%98%AFroot"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">Case2 \(點u是root\)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%B7%E8%81%AF%E9%80%9A%E5%96%AE%E5%85%83-scc"><span class="nav-number">1.7.</span> <span class="nav-text">強聯通單元 SCC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B3%AA"><span class="nav-number">1.7.1.</span> <span class="nav-text">性質</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="綸"
+      src="/uploads/myphoto.jpeg">
+  <p class="site-author-name" itemprop="name">綸</p>
+  <div class="site-description" itemprop="description">喜歡程式、耍廢、星星</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">綸</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.7.1/viz.js'></script>
+  <script>
+    String.prototype.replaceAll = function(search, replacement) {
+      var target = this;
+      return target.split(search).join(replacement);
+    };
+
+    let vizObjects = document.querySelectorAll('.graphviz')
+
+    for (let item of vizObjects) {
+      let svg = undefined
+      try {
+        svg = Viz(item.textContent.replaceAll('–', '--'), 'svg')
+      } catch(e) {
+        svg = `<pre class="error">${e}</pre>`
+      }
+      item.outerHTML = svg
+    }
+  </script>
+
+
+        
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //       load: ['[tex]/mhchem'],
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //       packages: {'[+]': ['mhchem']},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+    
+
+  
+
+    </div>
+</body>
+</html>
