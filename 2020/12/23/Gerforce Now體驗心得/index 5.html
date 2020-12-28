@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ryanovoovo.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言: Geforce Now是 nvidia推出的雲端串流服務，讓終端用戶使用雲端伺服器上的cpu及gpu運算資源，本機電腦也就不需要性能強大的顯卡，普通的文書筆電也能玩3A大作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Geforce Now體驗心得">
+<meta property="og:url" content="https://ryanovoovo.github.io/2020/12/23/Gerforce%20Now%E9%AB%94%E9%A9%97%E5%BF%83%E5%BE%97/index.html">
+<meta property="og:site_name" content="綸的部落格">
+<meta property="og:description" content="前言: Geforce Now是 nvidia推出的雲端串流服務，讓終端用戶使用雲端伺服器上的cpu及gpu運算資源，本機電腦也就不需要性能強大的顯卡，普通的文書筆電也能玩3A大作。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://ryanovoovo.github.io/uploads/geforce_now/geforce_now.jpg">
+<meta property="og:image" content="https://ryanovoovo.github.io/uploads/geforce_now/apply_geforce_now.jpg">
+<meta property="og:image" content="https://ryanovoovo.github.io/uploads/geforce_now/delay.jpg">
+<meta property="og:image" content="https://ryanovoovo.github.io/uploads/geforce_now/games.jpg">
+<meta property="og:image" content="https://ryanovoovo.github.io/uploads/geforce_now/cities.jpg">
+<meta property="article:published_time" content="2020-12-23T13:23:37.000Z">
+<meta property="article:modified_time" content="2020-12-25T04:07:15.963Z">
+<meta property="article:author" content="綸">
+<meta property="article:tag" content="streaming">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ryanovoovo.github.io/uploads/geforce_now/geforce_now.jpg">
+
+<link rel="canonical" href="https://ryanovoovo.github.io/2020/12/23/Gerforce%20Now%E9%AB%94%E9%A9%97%E5%BF%83%E5%BE%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>Geforce Now體驗心得 | 綸的部落格</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177212343-3"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-177212343-3');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">綸的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">d(`･∀･)b</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://ryanovoovo.github.io/2020/12/23/Gerforce%20Now%E9%AB%94%E9%A9%97%E5%BF%83%E5%BE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/myphoto.jpeg">
+      <meta itemprop="name" content="綸">
+      <meta itemprop="description" content="喜歡程式、耍廢、星星">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="綸的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Geforce Now體驗心得
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-23 21:23:37" itemprop="dateCreated datePublished" datetime="2020-12-23T21:23:37+08:00">2020-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-25 12:07:15" itemprop="dateModified" datetime="2020-12-25T12:07:15+08:00">2020-12-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TECH/" itemprop="url" rel="index"><span itemprop="name">TECH</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/uploads/geforce_now/geforce_now.jpg" width="50%" height="50%"></p>
+<h1 id="前言">前言:</h1>
+<p>Geforce Now是 nvidia推出的雲端串流服務，讓終端用戶使用雲端伺服器上的cpu及gpu運算資源，本機電腦也就不需要性能強大的顯卡，普通的文書筆電也能玩3A大作。</p>
+<a id="more"></a>
+<hr />
+<h1 id="申請過程">申請過程：</h1>
+<p><img src="/uploads/geforce_now/apply_geforce_now.jpg" /></p>
+<p>目前只開放體驗碼和台灣大哥大的用戶使用，未來預計會開放一般用戶 （體驗碼獲取方法可參考底下連結</p>
+<p><a target="_blank" rel="noopener" href="https://gfn.taiwanmobile.com/portal/news">geforce now體驗連結</a></p>
+<p>有邀請碼後可至官網下載Geforce now終端程式</p>
+<h1 id="遊玩過程">遊玩過程：</h1>
+<p>安裝好軟體後可先至設定的地方測試網路延遲</p>
+<p><img src="/uploads/geforce_now/delay.jpg" /></p>
+<p>我的筆電是連家用的5G網路，延遲還在可接受的範圍內 想要達到更低延遲的話還是推薦使用已太網路連線，有線的延遲絕對比無線的低 確認完網路都OK後就可以去連結steam庫，讓Geforce Now同步你的遊戲庫 （遊戲是要自己在steam等等網路平台上購買好的，Geforce Now只提供遊戲運算硬體的部分</p>
+<p><img src="/uploads/geforce_now/games.jpg" /></p>
+<p>目前就用cities skylines當範例吧 打開後會進到steam的登入頁面，輸入自己的帳號密碼就可以登入 第一次玩的遊戲要先下載，下載速度都還蠻快的，幾分鐘內會完成 （下載只需要下載一次，第二次打開遊戲可直接啟動 放上一張市民開心的圖（？</p>
+<p><img src="/uploads/geforce_now/cities.jpg" /></p>
+<h1 id="心得">心得：</h1>
+<p>總體來說體驗是還不錯的，遊戲幀數都在每秒60幀以上，筆電的也風扇不太會轉，不會有噪音產生，蠻適合想要有安靜遊戲體驗的人。過程中有時會碰到卡頓的問題，通常是網路造成的，如果有要玩fps遊戲的玩家，可能需要斟酌自己的網絡情形。 可遊玩的遊戲目前還有點少（不在列表上的遊戲是無法下載遊玩的），想要玩一些比較小眾遊戲的玩家，要先去參考官網的遊戲列表，以免申辦服務後卻發現無法遊玩的囧境。 希望未來可以支援所有遊戲(<em>/ω＼</em>) （（好想玩Nier automata QAQ</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/streaming/" rel="tag"># streaming</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/23/Likecoin%E9%81%8B%E4%BD%9C%E5%8E%9F%E7%90%86%E7%B0%A1%E4%BB%8B/" rel="prev" title="Likecoin運作原理簡介">
+      <i class="fa fa-chevron-left"></i> Likecoin運作原理簡介
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/23/%E6%95%B8%E8%AB%96/" rel="next" title="數論">
+      數論 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B3%E8%AB%8B%E9%81%8E%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">申請過程：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%81%8A%E7%8E%A9%E9%81%8E%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">遊玩過程：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%83%E5%BE%97"><span class="nav-number">4.</span> <span class="nav-text">心得：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="綸"
+      src="/uploads/myphoto.jpeg">
+  <p class="site-author-name" itemprop="name">綸</p>
+  <div class="site-description" itemprop="description">喜歡程式、耍廢、星星</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">綸</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.7.1/viz.js'></script>
+  <script>
+    String.prototype.replaceAll = function(search, replacement) {
+      var target = this;
+      return target.split(search).join(replacement);
+    };
+
+    let vizObjects = document.querySelectorAll('.graphviz')
+
+    for (let item of vizObjects) {
+      let svg = undefined
+      try {
+        svg = Viz(item.textContent.replaceAll('–', '--'), 'svg')
+      } catch(e) {
+        svg = `<pre class="error">${e}</pre>`
+      }
+      item.outerHTML = svg
+    }
+  </script>
+
+
+        
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+</body>
+</html>
