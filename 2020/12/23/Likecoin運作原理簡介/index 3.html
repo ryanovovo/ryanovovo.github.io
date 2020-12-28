@@ -21,17 +21,20 @@
     var CONFIG = {"hostname":"ryanovoovo.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Categories">
-<meta property="og:url" content="https://ryanovoovo.github.io/categories/index.html">
+  <meta name="description" content="前言： 最近幾個月在許多部落格網站的最底處都陸陸續續有like button，可以給創作者按讚，而這些是什麼呢？本篇文章將會根據官方文檔及白皮書，做簡單的介紹。 （在介紹的過程中為了方便普通讀者易懂，省略了許多背後的數學原理及演算法，想要詳細瞭解的讀者可參官方網站，相關連結會放在最下方）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Likecoin運作原理簡介">
+<meta property="og:url" content="https://ryanovoovo.github.io/2020/12/23/Likecoin%E9%81%8B%E4%BD%9C%E5%8E%9F%E7%90%86%E7%B0%A1%E4%BB%8B/index.html">
 <meta property="og:site_name" content="綸的部落格">
+<meta property="og:description" content="前言： 最近幾個月在許多部落格網站的最底處都陸陸續續有like button，可以給創作者按讚，而這些是什麼呢？本篇文章將會根據官方文檔及白皮書，做簡單的介紹。 （在介紹的過程中為了方便普通讀者易懂，省略了許多背後的數學原理及演算法，想要詳細瞭解的讀者可參官方網站，相關連結會放在最下方）">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-12-23T12:47:12.550Z">
-<meta property="article:modified_time" content="2020-12-23T12:47:12.524Z">
+<meta property="article:published_time" content="2020-12-22T17:24:46.000Z">
+<meta property="article:modified_time" content="2020-12-23T15:11:28.354Z">
 <meta property="article:author" content="綸">
+<meta property="article:tag" content="likecoin">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://ryanovoovo.github.io/categories/">
+<link rel="canonical" href="https://ryanovoovo.github.io/2020/12/23/Likecoin%E9%81%8B%E4%BD%9C%E5%8E%9F%E7%90%86%E7%B0%A1%E4%BB%8B/">
 
 
 <script id="page-configurations">
@@ -39,13 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-tw'
   };
 </script>
 
-  <title>Categories | 綸的部落格
-</title>
+  <title>Likecoin運作原理簡介 | 綸的部落格</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177212343-3"></script>
     <script data-pjax>
@@ -169,51 +171,115 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-tw">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://ryanovoovo.github.io/2020/12/23/Likecoin%E9%81%8B%E4%BD%9C%E5%8E%9F%E7%90%86%E7%B0%A1%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/myphoto.jpeg">
+      <meta itemprop="name" content="綸">
+      <meta itemprop="description" content="喜歡程式、耍廢、星星">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="綸的部落格">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Likecoin運作原理簡介
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">Categories
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
 
-<div class="post-meta">
+              <time title="Created: 2020-12-23 01:24:46 / Modified: 23:11:28" itemprop="dateCreated datePublished" datetime="2020-12-23T01:24:46+08:00">2020-12-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TECH/" itemprop="url" rel="index"><span itemprop="name">TECH</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言">前言：</h1>
+<p>最近幾個月在許多部落格網站的最底處都陸陸續續有like button，可以給創作者按讚，而這些是什麼呢？本篇文章將會根據官方文檔及白皮書，做簡單的介紹。 （在介紹的過程中為了方便普通讀者易懂，省略了許多背後的數學原理及演算法，想要詳細瞭解的讀者可參官方網站，相關連結會放在最下方）</p>
+<a id="more"></a>
+<hr />
+<h1 id="簡介">簡介：</h1>
+<p>Likecoin是一種去中心化的加密貨幣，創造此加密貨幣的理念是想改變網路生態，利用重塑的​新Like鍵​和獨特的​LikeRank演​算法，通過​創造力證明​機制追踪內容足跡，並回饋內容創作者。 （改編自官方白皮書</p>
+<hr />
+<h1 id="挖礦">挖礦？！：</h1>
+<p>Likecoin既然是去中心化的加密貨幣，就和前幾年很紅的比特幣一樣，需要有人來驗證交易是否為合法的。和比特幣不同之處是，比特幣決定誰可以打包區塊的方法是Pow（工作量證明），主要的算法是計算sha-256，誰先計算出來，就有權利可以驗證交易並打包區塊，並獲得比特幣作為報酬。這種方法的缺點是耗費大量的電力只為了驗證交易，同時計算的過程也浪費了時間，平均一筆交易被驗證完放到主鏈上要耗費15分鐘到3小時不等。 Likecoin的挖礦的方法是類似銀行，銀行有義務驗證每一筆交易是否正確，而Likecoin用戶可以將手上的Likecoin存到銀行，賺取利息。使用這種機制不僅速度較快（平均5秒可驗證一筆交易），也不用耗費大量的電力去計算sha-256，造成環境破壞。</p>
+<hr />
+<h1 id="分潤">分潤：</h1>
+<p>既然是想要給創作者獲利的空間，分潤就至關重要。在撰寫文章時，有時會引用到他人的創作，而在大部分的時候，被引用者無法得到報酬，likecoin的分潤演算法(Likerank)也考慮到了這一點，所以創造出了內容足跡，衍伸作品的物件中會加入被衍生作品的訊息，讓衍生的作品可以朔源，也就可以幫助創作者分潤。</p>
+<hr />
+<h1 id="驗證機制">驗證機制：</h1>
+<p>在上方挖礦介紹部分的銀行，依照官方文檔的說法叫做驗證人(validator)，而在世界上的每一位人，只要有一台可以7x24小時運行的伺服器，都可以成為驗證人。 驗證人有責任確認每一筆交易是否是合法的，而持有Likecoin的使用者可以決定要把Likecoin委託到哪位驗證人手中，有越多likecoin委託的驗證人，在驗證一筆交易是否合法上，就有較大的權重（可以想像成是有較大的話語權）而當權重比超過2/3以上同意時，交易就會被放到主鏈中，即此筆交易通過。而當驗證人沒有盡到責任，像是沒有7x24小時在線或是驗證了不合法的交易，將會觸發處罰機制，被委託的Likecoin會依比例扣除。 藉由給予好的好的驗證人及委託人獎勵，及處罰壞的驗證人及委託人，將可以確保每一筆交易都會是合法（被驗證過的） （詳細的演算法可以參考拜占庭演算法</p>
+<hr />
+<h1 id="社群">社群：</h1>
+<h2 id="讀者">讀者：</h2>
+<p>讀者可以至Likecoin官網註冊成為會員，會員有分付費會員和免費會員。付費會員的會費是5美元/月，付費會員的優勢在於給予創作者讚時，將會給創作者較多的LIkecoin（superlike），同時在參與決策時也會有較大的話語權。</p>
+<h2 id="創作者">創作者：</h2>
+<p>創作者也可至LIkecoin官網註冊成為會員接收讀者的讚，有部分的部落格平台已經內置了LIke button（e.g. matters, 探路客)，其他沒有內置Like button的平台（e.g. wordpress），也可以透過安裝插件的方式設置LIke button。 （詳細的安裝過程可以參考官方文檔或是之後推出的教學</p>
+<hr />
+<h1 id="後記">後記：</h1>
+<p>後記： 第一次寫有關加密貨幣的介紹，如果內容有誤，敬請不吝賜教，請在下方留言告知或是寄email到我的信箱，我會立即更正。 不知不覺就寫到了1000多字，沒想到能寫那麼多ww</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/likecoin/" rel="tag"># likecoin</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/23/Now%E9%AB%94%E9%A9%97%E5%BF%83%E5%BE%97/" rel="next" title="Geforce Now體驗心得">
+      Geforce Now體驗心得 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              2 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/TECH/">TECH</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BC%8F/">程式</a><span class="category-list-count">5</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -264,6 +330,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">簡介：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%96%E7%A4%A6"><span class="nav-number">3.</span> <span class="nav-text">挖礦？！：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%BD%A4"><span class="nav-number">4.</span> <span class="nav-text">分潤：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A9%97%E8%AD%89%E6%A9%9F%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">驗證機制：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BE%E7%BE%A4"><span class="nav-number">6.</span> <span class="nav-text">社群：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%80%E8%80%85"><span class="nav-number">6.1.</span> <span class="nav-text">讀者：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%B5%E4%BD%9C%E8%80%85"><span class="nav-number">6.2.</span> <span class="nav-text">創作者：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">7.</span> <span class="nav-text">後記：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ryanovoovo.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="數論">
+<meta property="og:type" content="article">
+<meta property="og:title" content="數論">
+<meta property="og:url" content="https://ryanovoovo.github.io/2020/12/23/%E6%95%B8%E8%AB%96/index.html">
+<meta property="og:site_name" content="綸的部落格">
+<meta property="og:description" content="數論">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-12-23T15:03:01.000Z">
+<meta property="article:modified_time" content="2020-12-23T15:10:58.880Z">
+<meta property="article:author" content="綸">
+<meta property="article:tag" content="數論">
+<meta property="article:tag" content="prime number">
+<meta property="article:tag" content="最大公因數 gcd">
+<meta property="article:tag" content="模反元素">
+<meta property="article:tag" content="中國剩餘定理 CRT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ryanovoovo.github.io/2020/12/23/%E6%95%B8%E8%AB%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>數論 | 綸的部落格</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177212343-3"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-177212343-3');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">綸的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">d(`･∀･)b</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://ryanovoovo.github.io/2020/12/23/%E6%95%B8%E8%AB%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/myphoto.jpeg">
+      <meta itemprop="name" content="綸">
+      <meta itemprop="description" content="喜歡程式、耍廢、星星">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="綸的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          數論
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-12-23 23:03:01 / Modified: 23:10:58" itemprop="dateCreated datePublished" datetime="2020-12-23T23:03:01+08:00">2020-12-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A8%8B%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">程式</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="數論">數論</h1>
+<a id="more"></a>
+<h2 id="質因數">質因數</h2>
+<h3 id="質因數排組">質因數排組</h3>
+<ul>
+<li><span class="math inline">\(X=p_1^{a_1}\times p_2^{a_2}\times p_3^{a_3}\times ...\times p_n^{a_n}\\\)</span></li>
+<li><span class="math inline">\(X的因數個數=(a_1+1)\times (a_2+1)\times (a_3+1)\times ...\times (a_n+1)\\\)</span></li>
+<li><span class="math inline">\(X的因數總和＝(\sum\limits_{i=0}^{a_1}p_1^{i})\times (\sum\limits_{i=0}^{a_3}p_2^{i})\times (\sum\limits_{i=0}^{a_3}p_3^{i})\times ...\times (\sum\limits_{i=0}^{a_n}p_n^{i})\)</span></li>
+</ul>
+<h3 id="篩法">篩法</h3>
+<h4 id="作法">作法</h4>
+<ul>
+<li>從2開始把2的倍數刪掉，再把還沒被刪掉的最近的數(i.e 3)的倍數刪掉，依序往下刪除剩下的數為質數</li>
+</ul>
+<h4 id="複雜度">複雜度</h4>
+<p><span class="math inline">\(\frac{n}{2}+\frac{n}{3}+\frac{n}{5}+...+\frac{n}{p}\\\)</span> <span class="math inline">\(\le\frac{n}{1}+\frac{n}{2}+\frac{n}{3}+...+\frac{n}{n}\\\)</span> <span class="math inline">\(\le\frac{n}{1}+[\frac{n}{2}+\frac{n}{2}]+[\frac{n}{4}+\frac{n}{4}+\frac{n}{4}+\frac{n}{4}]+...\\\)</span> <span class="math inline">\(=nlogn\)</span></p>
+<ul>
+<li><strong><span class="math inline">\(O(nlogn)\)</span></strong></li>
+</ul>
+<hr />
+<h2 id="最大公因數-gcd">最大公因數 GCD</h2>
+<h3 id="求gcd的方法">求GCD的方法</h3>
+<ul>
+<li><span class="math inline">\(gcd(a, b)=gcd(b, {a\ mod\ b})\)</span></li>
+</ul>
+<h4 id="複雜度-1">複雜度</h4>
+<ul>
+<li><span class="math inline">\(O(log \min(a, b))\)</span></li>
+</ul>
+<h3 id="求axbygcdab">求<span class="math inline">\(ax+by=gcd(a,b)\)</span></h3>
+<h4 id="解法">解法</h4>
+<p><span class="math inline">\(\begin{equation} \left\{  \begin{array}{l}  (a,\ b)=(x_1,\ y_1) &amp; \\  (b,\ a\ mod\ b)= (x_0,\ y_0)  \end{array} \right. \end{equation}\)</span></p>
+<p><span class="math inline">\(bx_0+(a\ mod\ b)y_0=gcd(a,\ b),\ 且\ x_0=gcd(a,b),\ y_0=0\)</span> <span class="math inline">\(bx_0+(a-kb)y_0=gcd(a,\ b)\)</span> <span class="math inline">\(a(-y_0)+b(x_0-ky_0)=gcd(a,\ b)\)</span></p>
+<p><span class="math inline">\(\begin{equation} \left\{  \begin{array}{l}  x_1=-y_0 &amp; \\  x_0-ky_0= y_1  \end{array} \right. \end{equation}\)</span></p>
+<p>遞迴可解出解出 <span class="math inline">\(\begin{equation} \left\{  \begin{array}{l}  x_n&amp; \\  y_n  \end{array} \right. \end{equation}\)</span></p>
+<hr />
+<h2 id="mod-乘法反元素">mod 乘法反元素</h2>
+<h3 id="題目敘述">題目敘述</h3>
+<p>給<span class="math inline">\(a,\ m,\ gcd(a,\ m)=1\\\)</span> 找<span class="math inline">\(x\ 使得\ ax\equiv1\pmod{m}\)</span></p>
+<h3 id="方法1.">方法1.</h3>
+<p>使用<span class="math inline">\(ax+my=gcd(a,b)=1\)</span>的方法求得</p>
+<h3 id="方法2.-歐拉-費馬定理">方法2. 歐拉-費馬定理</h3>
+<p><span class="math inline">\(x=a^{\phi(m)-1}\ mod\ m\\\)</span> <span class="math inline">\(\phi(m)=1\sim m\ 跟m互質的數字個數\)</span></p>
+<h4 id="計算phim">計算<span class="math inline">\(\phi(m)\)</span></h4>
+<p><span class="math inline">\([p_1,\ p_2,\ p_3,...,p_n]為m的質因數\\\)</span> <span class="math inline">\(則\phi(m)=m\times \frac{p_1-1}{p_1}\times \frac{p_2-1}{p_2}\times \frac{p_3-1}{p_3}\times...\times \frac{p_n-1}{p_n}\)</span></p>
+<hr />
+<h2 id="中國剩餘定理-crt">中國剩餘定理 CRT</h2>
+<h3 id="題目敘述-1">題目敘述</h3>
+<p>求最小的<span class="math inline">\(x\)</span>使得 <span class="math inline">\(\begin{equation} \left\{  \begin{array}{l}  x\equiv a_1\ mod\ m_1 &amp; \\  x\equiv a_2\ mod\ m_2 &amp; \\  x\equiv a_3\ mod\ m_3 &amp; \\  \vdots &amp;\\  x\equiv a_n\ mod\ m_n &amp; \\  \end{array} \right. \end{equation}\)</span></p>
+<h3 id="解法-1">解法</h3>
+<p><span class="math inline">\(令M=m_1\times m_2\times m_3 \times ... \times m_n\\\)</span> <span class="math inline">\(令M_i=\frac{M}{m_i}\\\)</span> <span class="math inline">\(令t_i=M_i^{-1}\ mod\ m_i\\\)</span> <span class="math inline">\(則x=\sum Mi\times t_i\times a_i\)</span></p>
+<hr />
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B8%E8%AB%96/" rel="tag"># 數論</a>
+              <a href="/tags/prime-number/" rel="tag"># prime number</a>
+              <a href="/tags/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B8-gcd/" rel="tag"># 最大公因數 gcd</a>
+              <a href="/tags/%E6%A8%A1%E5%8F%8D%E5%85%83%E7%B4%A0/" rel="tag"># 模反元素</a>
+              <a href="/tags/%E4%B8%AD%E5%9C%8B%E5%89%A9%E9%A4%98%E5%AE%9A%E7%90%86-CRT/" rel="tag"># 中國剩餘定理 CRT</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/23/Now%E9%AB%94%E9%A9%97%E5%BF%83%E5%BE%97/" rel="prev" title="Geforce Now體驗心得">
+      <i class="fa fa-chevron-left"></i> Geforce Now體驗心得
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/23/%E5%9C%96%E8%AB%96/" rel="next" title="圖論">
+      圖論 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B8%E8%AB%96"><span class="nav-number">1.</span> <span class="nav-text">數論</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%AA%E5%9B%A0%E6%95%B8"><span class="nav-number">1.1.</span> <span class="nav-text">質因數</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B3%AA%E5%9B%A0%E6%95%B8%E6%8E%92%E7%B5%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">質因數排組</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%A9%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">篩法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E6%B3%95"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">作法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A4%87%E9%9B%9C%E5%BA%A6"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">複雜度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B8-gcd"><span class="nav-number">1.2.</span> <span class="nav-text">最大公因數 GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82gcd%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">求GCD的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A4%87%E9%9B%9C%E5%BA%A6-1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">複雜度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82axbygcdab"><span class="nav-number">1.2.2.</span> <span class="nav-text">求\(ax+by&#x3D;gcd(a,b)\)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">解法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mod-%E4%B9%98%E6%B3%95%E5%8F%8D%E5%85%83%E7%B4%A0"><span class="nav-number">1.3.</span> <span class="nav-text">mod 乘法反元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE%E6%95%98%E8%BF%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">題目敘述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%951."><span class="nav-number">1.3.2.</span> <span class="nav-text">方法1.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%952.-%E6%AD%90%E6%8B%89-%E8%B2%BB%E9%A6%AC%E5%AE%9A%E7%90%86"><span class="nav-number">1.3.3.</span> <span class="nav-text">方法2. 歐拉-費馬定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A8%88%E7%AE%97phim"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">計算\(\phi(m)\)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E5%9C%8B%E5%89%A9%E9%A4%98%E5%AE%9A%E7%90%86-crt"><span class="nav-number">1.4.</span> <span class="nav-text">中國剩餘定理 CRT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE%E6%95%98%E8%BF%B0-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">題目敘述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">解法</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="綸"
+      src="/uploads/myphoto.jpeg">
+  <p class="site-author-name" itemprop="name">綸</p>
+  <div class="site-description" itemprop="description">喜歡程式、耍廢、星星</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">綸</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.7.1/viz.js'></script>
+  <script>
+    String.prototype.replaceAll = function(search, replacement) {
+      var target = this;
+      return target.split(search).join(replacement);
+    };
+
+    let vizObjects = document.querySelectorAll('.graphviz')
+
+    for (let item of vizObjects) {
+      let svg = undefined
+      try {
+        svg = Viz(item.textContent.replaceAll('–', '--'), 'svg')
+      } catch(e) {
+        svg = `<pre class="error">${e}</pre>`
+      }
+      item.outerHTML = svg
+    }
+  </script>
+
+
+        
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //       load: ['[tex]/mhchem'],
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //       packages: {'[+]': ['mhchem']},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+    
+
+  
+
+    </div>
+</body>
+</html>
